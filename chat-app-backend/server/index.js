@@ -9,6 +9,8 @@ app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 app.use(cors());
 
+require('./connection');
+
 const server = require('http').createServer(app);
 const PORT = 5001;
 const io = require('socket.io')(server,{
