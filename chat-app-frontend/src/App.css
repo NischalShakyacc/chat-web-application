@@ -1,0 +1,28 @@
+.nav-link {
+  margin: 0 1rem;
+  text-align: center;
+}
+
+.container-form{
+  margin: 2rem ;
+  width: 100%;
+}
+.form{
+  border: 1px solid lavender;
+  border-radius: 8px;
+}
+
+.roomlist{
+  cursor: pointer;
+}
+.roomlist:hover {
+  background-color: rgb(232, 249, 255) !important;
+}
+
+/*
+For Message Area 
+*/
+.message-area{
+  height: 60vh;
+  overflow-y: scroll;
+}
