@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 const userSchema = new Schema({
     username:{
         type: String,
-        required: [true, "Cannot be empty"]
+        required: [true, "Cannot be empty bhai"]
     },
 
     email:{
@@ -38,14 +38,13 @@ const userSchema = new Schema({
 // to hide/encrypt user password before storing user password
 userSchema.pre('save',function(next){
   const user = this;
-  if(user.isModified('password')){
-    return next(); 
-  }
+  if(!user.isModified('password')) return next();
+
   bcrypt.genSalt(10, function(err, salt){
     if(err) return next(err);
 
     //if no error then hash the password
-    bcrypt.hash(user.password, salt, function(err,hash){
+    bcrypt.hash(user.password, salt, function(err, hash){
       if(err) return next(err);
 
       user.password = hash;

@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 app.use(cors());
 
-app.use('./users', userRoute)
+app.use('/users', userRoute)
 require('./connection');
 
 const server = require('http').createServer(app);

@@ -4,33 +4,33 @@ const User = require('../models/users');
 //creating user in database
 router.post('/', async(req, res) => {
   try{
-    const {name, email, password} = req.body;
-    console.log(req.body);
+    const {username, email, password} = req.body;
     const user = await User.create(
       {
-        name, 
+        username, 
         email, 
         password
       }
     );
     res.status(201).json(user);
   }
-  catch(error){
-    let message;
+  catch(err){
+    let msg;
     // To check if user with email is already in DB
-    if(error.code == 11000){
-      message = "user already exists. (user must be unique)"
+    if (err.code === 11000) {
+      msg = "User already exists. (Username or email must be unique)";
+      res.status(400).json(msg);
     } else {
-      message = e.message;
+      msg = err.message;
+      res.status(500).json(msg);
     }
+    console.log(err)
+    res.status(200).json(msg);
   }
-
-  console.log(error);
-  res.status(200).json(message);
 })
 
 //login functionality
-router.post('./login', async(req, res) => {
+router.post('/login', async(req, res) => {
   try{
     const {email, password} = req.body;
     const user = await User.findByCredentials(email, password);

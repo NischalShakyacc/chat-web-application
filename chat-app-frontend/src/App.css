@@ -26,3 +26,11 @@ For Message Area
   height: 60vh;
   overflow-y: scroll;
 }
+
+.user-profile{
+  margin-left: 1rem !important;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  margin: auto;
+}
