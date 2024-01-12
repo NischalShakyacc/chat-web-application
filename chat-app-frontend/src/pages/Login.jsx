@@ -1,13 +1,17 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import { Link, useNavigate } from 'react-router-dom';
 import { useLoginUserMutation } from '../services/applicationApi';
+import { AppContext } from '../context/appContext';
 
 
 const Login = () => {
+  //importing socket from Context
+  const {socket} = useContext(AppContext);
+  
   const navigate = useNavigate();
   const [loginUser, {isLoading, error}] = useLoginUserMutation() ;
   const [credentials, setCredentials] = useState({
@@ -34,6 +38,7 @@ const Login = () => {
         if(data){
           console.log(data);
           //socket work
+
           //navigate to chat
           navigate("/chatroom");
         }else{
